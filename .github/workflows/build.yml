@@ -17,14 +17,14 @@ jobs:
     - name: Checkout metabase
       uses: actions/checkout@master
       with:
-        path: ./metabase
-        name: metabase/metabase
+        path: metabase
+        repository: metabase/metabase
         ref: release-x.37.x
 
     - name: Checkout driver
       uses: actions/checkout@v2
       with:
-        path: ./driver
+        path: driver
 
     - name: Prepare Node.js
       uses: actions/setup-node@v1
@@ -60,6 +60,7 @@ jobs:
         lein install-for-building-drivers
 
     - run: |
+        pwd
         cd driver
         lein clean
         DEBUG=1 LEIN_SNAPSHOTS_IN_RELEASE=true lein uberjar
@@ -68,4 +69,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: http.metabase-driver
-        path: ./driver/target/uberjar/http.metabase-driver.jar
+        path: driver/target/uberjar/http.metabase-driver.jar
