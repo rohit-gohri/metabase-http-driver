@@ -19,7 +19,7 @@ jobs:
       with:
         path: ./metabase
         name: metabase/metabase
-        ref: refs/heads/release-x.37.x
+        ref: release-x.37.x
 
     - name: Checkout driver
       uses: actions/checkout@v2
